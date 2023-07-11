@@ -1,4 +1,6 @@
 from constants import *
+from inputs import *
+
 def computeRoomArea(menuOption):
     '''
         Computes the area based on the type of room.
@@ -28,6 +30,8 @@ def computeRectangleArea(length, width):
         width - width of rectangle
     Returns: area - area of rectangle
     '''
+    area = length * width
+    return area
     pass
  
 def computeSquareWallsArea():
@@ -38,7 +42,15 @@ def computeSquareWallsArea():
     Arguments: None
     Returns: area of the walls
     '''
-    pass
+    numWINDOWSDOOR= getNumberWindowsDoors
+    total_area =0
+    for i in range(numWINDOWSDOOR):
+        length = float(input(f"Enter length for window/door {i} in feet: "))
+        width = float(input(f"Enter width for window/door {i} in feet"))
+        total_area += length*width*4
+        i+=1
+    return total_area
+  
 
 def computeWindowsDoorsArea(numberOfWindows):
     '''
