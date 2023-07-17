@@ -1,7 +1,7 @@
 # This module prints out the final results
 from constants import *
  
-def printRoomSummary(room, area, paintPriceGal):
+def printRoomSummary(area, paintPriceGal,totalPaintcost,numRoom):
     '''
         Prints a summary for the room including:
             - room number 
@@ -16,8 +16,12 @@ def printRoomSummary(room, area, paintPriceGal):
             None
 
     '''
-    pass
-     
+    print(
+        f"""\nFor Room: {numRoom}
+        Area to be painted: {area:.1f} sq ft.
+        Paint required    : {paintPriceGal:.2f} gallons
+        Paint cost(approx): ${totalPaintcost:.2f}
+          """)
 
 def computeGallons(area):
 
@@ -27,9 +31,11 @@ def computeGallons(area):
         Arguments:  area (float)
         Returns:    gallons of paint
     '''  
-    pass
 
-def computePaintPrice(area,paintPricePerGal):
+    gallon = area / 175
+    return gallon
+
+def computePaintPrice(paintprice,paintPricePerGal):
     '''
     Takes the area and paint price/gal as parameters, 
     calculates and returns the cost of paint
@@ -38,4 +44,8 @@ def computePaintPrice(area,paintPricePerGal):
         pairtPricePerGall - price per gallon
     Returns: price - paint price for the room
     '''
-    pass
+
+    totalPaintCost = paintprice * paintPricePerGal
+    return totalPaintCost
+
+    

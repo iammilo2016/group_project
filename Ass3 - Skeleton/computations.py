@@ -1,5 +1,5 @@
 from constants import *
-from inputs import *
+
 
 def computeRoomArea(menuOption):
     '''
@@ -10,7 +10,19 @@ def computeRoomArea(menuOption):
         Arguments: none
         Returns: area of room in square feet
     '''
-    pass
+    if menuOption == 1:
+        RectangleArea = computeRectangleWallsArea()
+        print('')
+        return RectangleArea
+    elif menuOption == 2:
+        SquareWallsArea = computeSquareWallsArea()
+        print('')
+        return SquareWallsArea
+    else:
+        CustomWallsArea = computeCustomWallsArea()
+        print('')
+        return CustomWallsArea
+    
 def computeRectangleWallsArea():
     '''
     Asks the user to enter the length, width and height 
@@ -19,7 +31,14 @@ def computeRectangleWallsArea():
     Arguments: None
     Returns: area of the walls
     '''
-    pass    
+    l = float(input("Enter the length of the room in feet:"))
+    w = float(input("Enter the width of the room in feet:"))
+    h = float(input("Enter the height of the room in feet:"))
+
+    area = (2*w*h ) + (2*l*h)
+    return area
+
+
 
 def computeRectangleArea(length, width):
     '''
@@ -30,8 +49,6 @@ def computeRectangleArea(length, width):
         width - width of rectangle
     Returns: area - area of rectangle
     '''
-    area = length * width
-    return area
     pass
  
 def computeSquareWallsArea():
@@ -42,15 +59,10 @@ def computeSquareWallsArea():
     Arguments: None
     Returns: area of the walls
     '''
-    numWINDOWSDOOR= getNumberWindowsDoors
-    total_area =0
-    for i in range(numWINDOWSDOOR):
-        length = float(input(f"Enter length for window/door {i} in feet: "))
-        width = float(input(f"Enter width for window/door {i} in feet"))
-        total_area += length*width*4
-        i+=1
-    return total_area
-  
+    l = float(input("Enter the length of the room in feet:"))
+    w = float(input("Enter the width of the room in feet:"))
+    area = 4*l*w
+    return area
 
 def computeWindowsDoorsArea(numberOfWindows):
     '''
@@ -60,7 +72,15 @@ def computeWindowsDoorsArea(numberOfWindows):
     Parameters: numberOfWindows - # of windows in the room
     Returns: area of the all the windows
     '''
-    pass
+    i = 0
+    totalArea = 0
+    while i < (numberOfWindows):
+        i += 1
+        l = float(input(f"Enter length for window/door {i} in feet: "))
+        w = float(input(f"Enter width for window/door {i} in feet: "))
+        totalArea += (l*w)
+    return totalArea
+
 
 def computeCustomWallsArea():
     '''
@@ -69,4 +89,21 @@ def computeCustomWallsArea():
     Parameters: None
     Returns: area - wall area of the custom room
     '''
-    pass
+    wallNum = int(input("How many walls are there in the room? "))
+    totalArea = 0
+    i = 0
+    while i < wallNum:
+        i += 1
+        l = float(input(f"Enter length for window/door {i} in feet: "))
+        w = float(input(f"Enter width for window/door {i} in feet: "))
+        totalArea += (l*w)
+    return totalArea
+
+        #add enter length n width {i}
+        #total area += (l*h)
+        #return totalarea
+
+
+
+
+    

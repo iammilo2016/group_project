@@ -4,10 +4,6 @@ from report import *
 import math
 
 def main():
-    print('The Painter\'s Company Estimating Tool')
-    getPaintPrice()
-    getNumberOfCoats()
-    getNumberRooms()
     
     '''
     Controls flow of the program. Gets the initial inputs, 
@@ -17,26 +13,53 @@ def main():
     Arguments: None
     Returns: None
     '''
-    pass
+    i = 0
+    quoteSurface = 0
+    quoteGallons = 0
+    quoteWindows = 0
+    paintPrice = getPaintPrice() #get paint price 
+    numCoats = getNumberOfCoats() #num of coats
+    numRooms = getNumberRooms() #num of rooms
+    print()
+    while i < numRooms:
+        i += 1 
+        menuOption = roomsMenu(i) #the menu option
+        RoomArea = computeRoomArea(menuOption) #calls functions from computations
+        numWindowDoors = getNumberWindowsDoors() #gets number of windows 
+        print()
+        WindowDoorsArea = computeWindowsDoorsArea(numWindowDoors)
+        areaPainted = (RoomArea - WindowDoorsArea) #func for this
+        totalSurface = areaPainted * numCoats   #func for this 
+        gallons = computeGallons(totalSurface) #finds the amt of gallons 
+        totalPaintPrice = computePaintPrice(paintPrice,gallons) #paint cost
+        sumRoom = printRoomSummary(totalSurface,gallons,totalPaintPrice,i) #prints out the summary per each room
+        quoteWindows += numWindowDoors #adds the number of windows to calc the quote amount for the customer quote
+        quoteSurface += totalSurface #adds the total surface to calc the quote amount for the customer quote
+        quoteGallons += gallons #adds the number of gallons to calc the quote amount for the customer quote
+    totalCustomerQuote = ((paintPrice * (math.ceil(quoteGallons))) + (quoteSurface * LABOUR_PER_SQ_FOOT) + (quoteWindows * 10)) * PROFIT_MARGIN
+    print(f"""Customer Quote for All {numRooms} rooms:
+        Coats of paint to be applied: {numCoats} 
+        Total area ot be painted    : {quoteSurface}
+        Paint Required              : {(math.ceil(quoteGallons))} gallons 
+        Total Customer estimate     : {totalCustomerQuote:.2f}
+        (Includes paint, labor and overhead)
+          """)
 
-def getPaintPrice():
-    enterpriceofPaint = float(input("Enter price of paint: "))
     
-    return enterpriceofPaint
+
+
+def getPaintPrice():    
     '''
         Asks the user to enter the paint price and returns the value entered
 
         Returns:  paint price / gallon
     '''
+    paintPrice = float(input("Enter Price of paint: "))
+    return paintPrice
 
 
 def getNumberOfCoats():
-
-    enterCoats = int(input("Enter number of coats of paint to apply (1-4): "))
-    while enterCoats < 1 or enterCoats > 4:
-        print("Error: Number of coats must be between 1 and 4")
-        enterCoats = int(input("Enter number of coats of paint to apply (1-4): "))
-    return enterCoats
+    
     ''' 
         Asks the user to enter the number of coats of paint 
         to apply (1-4) and returns value entered. Error checks the
@@ -44,26 +67,24 @@ def getNumberOfCoats():
 
         Returns:  number of coats of paint
     '''
+    numCoats = int(input("Enter number of coats of paint to apply (1-4): "))
+    return numCoats
+
 
 def getNumberRooms():
-    enterRooms = int(input("How many rooms do you want to paint? "))
-    return enterRooms
     '''  
        Asks the user to enter the number of rooms 
        to paint and returns value entered
           
         Returns: number of rooms
     '''
-    pass
+
+    numRooms = int(input("How many rooms do you want to paint?: "))
+    return numRooms
+
+
 
 def roomsMenu(nbrOfRooms):
-    roomMenuDict = {'1':'Rectangular','2':'Square','3':'Custom'}
-    print(roomMenuDict(1))
-    enterType = int(input("Enter type of room (1-3): "))
-    while enterType < 1 or enterType > 3:
-        print("Error: Type of room must be between 1 and 3")
-        enterType = int(input("Enter type of room (1-3): "))
-    return enterType
     '''
        Reads the shape of the room based on a list of valid shapes.
        Based on a roomMenuDict of 1:Rec, 2:Square and 3:Custom.
@@ -76,13 +97,31 @@ def roomsMenu(nbrOfRooms):
     roomMenuDict = {'1':'Rectangular','2':'Square','3':'Custom'}
     
 
+    print(f"Rooms {nbrOfRooms}")
+    print("Select the shape of the room: ")
+    for option in roomMenuDict:
+            print(option,'-', roomMenuDict[option])
+    menuOption = int(input("Option: "))
+    if menuOption in range(0,4):
+        return menuOption
+    else:
+        print("Invalid option")
+        menuOption = int(input("Option: "))
+
 def getNumberWindowsDoors():
     '''
         Inputs the number of windows and doors in a room
     
         Returns:  number of doors and windows in a room
     '''
-    pass
+    numWindowsDoors = int(input("How many windows and doors are in the room? "))
+    return numWindowsDoors
+
+    
+    
+
+
+
 
 if __name__ == '__main__':
     main()
