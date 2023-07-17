@@ -1,0 +1,9 @@
+1 gallon cover 175ft
+Labour cost $0.18/ft2
+Additional labor cost:
+$10 for each door or window in a room
+Profit margin 30% for paint and labour
+Are of a wall in a Retangular room= (Length or width)*height
+Area of wall in a square room = length*height
+Wall area to be painted = the area of the wall - the sum of the area of all the windows and doors on that wall
+Calculate a total charge for taping based upon the number of windows/doors in a room
