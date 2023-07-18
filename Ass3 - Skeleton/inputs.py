@@ -36,7 +36,7 @@ def main():
         quoteWindows += numWindowDoors #adds the number of windows to calc the quote amount for the customer quote
         quoteSurface += totalSurface #adds the total surface to calc the quote amount for the customer quote
         quoteGallons += gallons #adds the number of gallons to calc the quote amount for the customer quote
-    totalCustomerQuote = ((paintPrice * (math.ceil(quoteGallons))) + (quoteSurface * LABOUR_PER_SQ_FOOT) + (quoteWindows * 10)) * PROFIT_MARGIN
+    totalCustomerQuote = ((paintPrice * (math.ceil(quoteGallons))) + (quoteSurface * LABOUR_PER_SQ_FOOT) + (quoteWindows * 10)) * (1+PROFIT_MARGIN)
     print(f"""Customer Quote for All {numRooms} rooms:
         Coats of paint to be applied: {numCoats} 
         Total area ot be painted    : {quoteSurface}

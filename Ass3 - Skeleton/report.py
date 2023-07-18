@@ -14,7 +14,6 @@ def printRoomSummary(area, paintPriceGal,totalPaintcost,numRoom):
             paintPriceGal - paint price per Gal
         Returns:
             None
-
     '''
     print(
         f"""\nFor Room: {numRoom}
